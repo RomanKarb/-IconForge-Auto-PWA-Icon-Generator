@@ -21,7 +21,9 @@
 
 ## 🚀 Быстрый старт
 
-### Шаг 1: Установка ImageMagick
+### Вариант 1️⃣: ImageMagick (Рекомендуется)
+
+#### Шаг 1: Установка ImageMagick
 
 **Windows:**
 1. Скачайте с https://imagemagick.org/script/download.php#windows
@@ -39,6 +41,29 @@ brew install imagemagick
 sudo apt-get install imagemagick
 ```
 
+---
+
+### Вариант 2️⃣: FFmpeg (Альтернатива)
+
+**Windows (через winget):**
+```bash
+winget install ffmpeg
+```
+
+**macOS:**
+```bash
+brew install ffmpeg
+```
+
+**Linux:**
+```bash
+sudo apt-get install ffmpeg
+```
+
+➡️ **Подробные FFmpeg команды:** смотрите [ffmpeg-commands.md](ffmpeg-commands.md)
+
+---
+
 ### Шаг 2: Подготовка иконки
 
 1. Создайте иконку размером **512×512px** в формате **PNG**
@@ -46,6 +71,8 @@ sudo apt-get install imagemagick
 3. Разместите в папке со скриптом
 
 ### Шаг 3: Запуск генератора
+
+#### 🖼️ ImageMagick вариант:
 
 **На Windows (Batch):**
 ```bash
@@ -62,6 +89,30 @@ sudo apt-get install imagemagick
 ```bash
 bash generate-icons.sh
 ```
+
+#### 🎬 FFmpeg вариант:
+
+**На Windows:**
+```bash
+.\generate-icons-ffmpeg.bat
+```
+
+**На Mac/Linux:**
+```bash
+bash generate-icons-ffmpeg.sh
+```
+
+**На любой ОС (PowerShell):**
+```bash
+.\generate-icons-ffmpeg.ps1
+```
+
+**Или вручную (один размер):**
+```bash
+ffmpeg -i source-icon.png -vf scale=192:192 icons/icon-192.png -y
+```
+
+➡️ Все команды FFmpeg смотрите в [ffmpeg-commands.md](ffmpeg-commands.md)
 
 ### Шаг 4: Использование результатов
 
@@ -231,6 +282,49 @@ set PROJECT_NAME=My App
 3. Запустите аудит
 4. Проверьте: Icons present ✓
 ```
+
+## 🔄 Сравнение: ImageMagick vs FFmpeg
+
+Оба инструмента отлично подходят для генерации иконок. Вот как они отличаются:
+
+| Критерий | ImageMagick | FFmpeg |
+|----------|-------------|--------|
+| **Установка** | Простая | Простая |
+| **Размер** | ~40 MB | ~60 MB |
+| **Скорость** | Средняя | Быстрая |
+| **Функциональность** | Узконаправленная (изображения) | Универсальная (видео, аудио, изображения) |
+| **Качество масштабирования** | Отличное | Отличное |
+| **Кроссплатформность** | Да (Windows, Mac, Linux) | Да (Windows, Mac, Linux) |
+| **Сложность команд** | Проще | Проще |
+| **Документация** | Обширная | Очень обширная |
+| **Поддержка форматов** | Все основные | Все основные |
+| **Интеграция в проект** | Хорошо для конкретной задачи | Универсальный инструмент |
+
+### Когда выбрать что?
+
+**ImageMagick:**
+- 🎯 Нужна специализированная программа только для изображений
+- 🏠 Есть Windows и нужна простота установки
+- ⚡ Иконки не критичны по времени
+
+**FFmpeg:**
+- 🎬 Может понадобиться для видео/аудио в будущем
+- 🐧 Работаете в Linux/Mac среде
+- ⚙️ Уже установлен FFmpeg в проекте
+
+### Пример использования обоих
+
+```bash
+# ImageMagick
+magick source-icon.png -resize 192x192 output.png
+
+# FFmpeg
+ffmpeg -i source-icon.png -vf scale=192:192 output.png -y
+```
+
+Результат **идентичный**! Выбирайте то, что удобнее.
+
+➡️ **Все команды FFmpeg:** смотрите [ffmpeg-commands.md](ffmpeg-commands.md)
 
 ## ❓ Частые вопросы
 
